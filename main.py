@@ -21,6 +21,11 @@ async def read_item(item_id: int):
     return {"item_id": item_id}
 
 
+@app.post("/items/{item_id}")
+async def create_item(item_id: int):
+    return {"item_id": item_id}
+
+
 @app.get("/items")
 async def read_item_list() -> List[Item]:
     my_item: Item = Item(name="nolan", id=1, color="green")
