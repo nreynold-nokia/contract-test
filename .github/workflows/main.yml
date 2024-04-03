@@ -22,8 +22,13 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Generate openapi.json
         run: |
-          python dump_openapi.py 
+          python check_schema.py 
       - name: Check openapi.json
         run: |
-          cat openapi.json
+          if ! diff -q temp-openapi.json openapi.json; then
+            echo "The generated openapi.json differs from the current version."
+            exit 1
+          else
+            echo "openapi looks good"
+          fi
       - run: echo "🍏 This job's status is ${{ job.status }}."
