@@ -12,6 +12,8 @@ export interface paths {
   "/items/{item_id}": {
     /** Read Item */
     get: operations["read_item_items__item_id__get"];
+    /** Create Item */
+    post: operations["create_item_items__item_id__post"];
   };
   "/items": {
     /** Read Item List */
@@ -73,6 +75,28 @@ export interface operations {
   };
   /** Read Item */
   read_item_items__item_id__get: {
+    parameters: {
+      path: {
+        item_id: number;
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        content: {
+          "application/json": unknown;
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"];
+        };
+      };
+    };
+  };
+  /** Create Item */
+  create_item_items__item_id__post: {
     parameters: {
       path: {
         item_id: number;
