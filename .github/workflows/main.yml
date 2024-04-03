@@ -41,7 +41,7 @@ jobs:
         run: npx openapi-typescript openapi.json -o ./fe/src/temp-my-schema.d.ts
       - name: Check types 
         run: |
-          if ! diff -q ./fe/src/temp-my-schema.json ./fe/src/my-schema.d.ts; then
+          if ! diff -q ./fe/src/temp-my-schema.d.ts ./fe/src/my-schema.d.ts; then
             echo "The generated api types differ from the current version."
             exit 1
           else
