@@ -14,8 +14,8 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Generate openapi.json
         run: |
-          python dump_openapi.py ${{ github.workspace }
+          python dump_openapi.py 
       - name: Check openapi.json
-      - run: |
+        run: |
           cat openapi.json
       - run: echo "🍏 This job's status is ${{ job.status }}."
