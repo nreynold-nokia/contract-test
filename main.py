@@ -21,6 +21,7 @@ app.add_middleware(
 
 
 class Item(BaseModel):
+    name: str
     id: int
     color: str
 
