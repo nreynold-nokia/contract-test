@@ -35,6 +35,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - name: Install npm deps 
+        run: cd fe && npm install 
       - name: Install openapi-ts
         run: npm install -g openapi-typescript
       - name: Generate Types
@@ -47,4 +49,6 @@ jobs:
           else
             echo "types look good"
           fi
+      - name: Build FE 
+        run: cd fe && npm run build
       - run: echo "🍏 This job's status is ${{ job.status }}."

@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from typing import List, Union
-from fastapi.openapi.utils import get_openapi
+from typing import List
 from pydantic import BaseModel
 
 app = FastAPI()
