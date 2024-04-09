@@ -23,7 +23,6 @@ app.add_middleware(
 class Item(BaseModel):
     name: str
     id: int
-    color: str
 
 
 @app.get("/")
@@ -43,5 +42,5 @@ async def create_item(item_id: int):
 
 @app.get("/items")
 async def read_item_list() -> List[Item]:
-    my_item: Item = Item(name="nolan", id=1, color="green")
+    my_item: Item = Item(name="nolan", id=1)
     return [my_item]

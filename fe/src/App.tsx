@@ -8,9 +8,9 @@ function App() {
     <>
       <h1>Test types</h1>
       <div className="card">
-        {myItem.name}
-        {myItem.id}
-        {myItem.color}
+        name {myItem.name}
+        id {myItem.id}
+        color {myItem.color}
       </div>
     </>
   )
