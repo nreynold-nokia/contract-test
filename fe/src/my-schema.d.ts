@@ -34,6 +34,8 @@ export interface components {
       name: string;
       /** Id */
       id: number;
+      /** Color */
+      color: string;
     };
     /** ValidationError */
     ValidationError: {
