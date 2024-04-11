@@ -9,6 +9,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     id: int
+    color: str
 
 
 @app.get("/")
@@ -23,5 +24,5 @@ async def read_item(item_id: int):
 
 @app.get("/items")
 async def read_item_list() -> List[Item]:
-    my_item: Item = Item(name="nolan", id=1)
+    my_item: Item = Item(name="nolan", id=1, color="green")
     return [my_item]

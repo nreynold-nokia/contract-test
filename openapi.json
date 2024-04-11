@@ -105,12 +105,17 @@
           "id": {
             "type": "integer",
             "title": "Id"
+          },
+          "color": {
+            "type": "string",
+            "title": "Color"
           }
         },
         "type": "object",
         "required": [
           "name",
-          "id"
+          "id",
+          "color"
         ],
         "title": "Item"
       },
