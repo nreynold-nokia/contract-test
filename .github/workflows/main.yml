@@ -1,0 +1,54 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with: 
+          python-version: '3.x' 
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install fastapi[all]
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: Generate openapi.json
+        run: |
+          python check_schema.py 
+      - name: Check openapi.json
+        run: |
+          if ! diff -q temp-openapi.json openapi.json; then
+            echo "The generated openapi.json differs from the current version."
+            exit 1
+          else
+            echo "openapi looks good"
+          fi
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install npm deps 
+        run: cd fe && npm install 
+      - name: Install openapi-ts
+        run: npm install -g openapi-typescript
+      - name: Generate Types
+        run: npx openapi-typescript openapi.json -o ./fe/src/temp-my-schema.d.ts
+      - name: Check types 
+        run: |
+          if ! diff -q ./fe/src/temp-my-schema.d.ts ./fe/src/my-schema.d.ts; then
+            echo "The generated api types differ from the current version."
+            exit 1
+          else
+            echo "types look good"
+          fi
+      - name: Build FE 
+        run: cd fe && npm run build
+      - run: echo "🍏 This job's status is ${{ job.status }}."

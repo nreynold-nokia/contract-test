@@ -56,6 +56,41 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Create Item",
+        "operationId": "create_item_items__item_id__post",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Item Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/items": {
@@ -98,19 +133,19 @@
       },
       "Item": {
         "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
           "id": {
             "type": "integer",
             "title": "Id"
-          },
-          "color": {
-            "type": "string",
-            "title": "Color"
           }
         },
         "type": "object",
         "required": [
-          "id",
-          "color"
+          "name",
+          "id"
         ],
         "title": "Item"
       },
