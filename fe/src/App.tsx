@@ -2,7 +2,7 @@ import { Item } from './api-types'
 import './App.css'
 
 function App() {
-  const myItem: Item = { name: 'nolan', id: 1, color: 'green' }
+  const myItem: Item = { name: 'nolan', id: 1 }
 
   return (
     <>
@@ -10,7 +10,6 @@ function App() {
       <div className="card">
         name {myItem.name}
         id {myItem.id}
-        color {myItem.color}
       </div>
     </>
   )
