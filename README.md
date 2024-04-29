@@ -1,6 +1,21 @@
 # contract-test
 
-## Generate Schema
+## Prerequisites
+* Python
+* pip
+* node + npm
+
+1. `pip install fastapi`
+2. `pip install "uvicorn[standard]"`
+3. `cd fe && npm install`
+
+## Start
+1. Start FastAPI `uvicorn main:app --reload`
+2. Docs: http://127.0.0.1:8000/docs
+3. Start front-end `cd fe` and `npm run dev`  
+4. Frontend: http://localhost:5173/ 
+
+## Generate OpenAPI Schema
 1. In project root
 2. `python dump_openapi.py`
 
@@ -9,7 +24,5 @@
 2. `npm run generate-types`
 
 ## TODO
-* Fire up swagger editor > make changes > see openapi diffed between swagger editor and fastapi-generated code > change fastapi code > see diff again > also see diff with TS gen
-* Github Actions to check schema and types
 * Helper script to check schemas locally
-* Example actually using types - export the schemas we need
+* Clean up github actions 
